@@ -15,17 +15,17 @@ async function signup(req, res) {
   console.log(req.body, req.file, " <req.body, req.file in our signup")
 
   const filePath = `${uuidv4()}/${req.file.originalname}`
-  const params = { 
-    Bucket: BUCKET_NAME, 
-    Key: filePath, 
-    Body: req.file.buffer 
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: filePath,
+    Body: req.file.buffer
   }
 
   s3.upload(params, async function (err, data) {
 
-      console.log(err, ' <- err from aws, are your keys and buckets correct?')
+    console.log(err, ' <- err from aws, are your keys and buckets correct?')
 
-    const user = new User({...req.body, photoUrl: data.Location});
+    const user = new User({ ...req.body, photoUrl: data.Location });
     try {
       await user.save();
       const token = createJWT(user);

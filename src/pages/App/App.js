@@ -8,19 +8,19 @@ import Feed from '../Feed/Feed'
 
 function App() {
 
-  const [ user, setUser ] = useState(userService.getUser())
+  const [user, setUser] = useState(userService.getUser())
 
-  function handleSignUpOrLogin(){
+  function handleSignUpOrLogin() {
     setUser(userService.getUser())
   }
 
   return (
-      <Routes>
-          <Route path='/' element={<Feed />} />
-          <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
-          
-          <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
-      </Routes>
+    <Routes>
+      <Route path='/' element={<Feed />} />
+      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+
+      <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+    </Routes>
   );
 }
 

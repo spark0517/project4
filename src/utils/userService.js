@@ -9,14 +9,14 @@ function signup(user) {
     // what do datatype do you need to change this too?
     body: user
   })
-  .then(res => {
-    if (res.ok) return res.json();
-    // Probably a duplicate email
-    console.log("If you have an error, you must check your server terminal!")
-    throw new Error('Email already taken!');
-  })
-  // Parameter destructuring!
-  .then(({token}) => tokenService.setToken(token));
+    .then(res => {
+      if (res.ok) return res.json();
+      // Probably a duplicate email
+      console.log("If you have an error, you must check your server terminal!")
+      throw new Error('Email already taken!');
+    })
+    // Parameter destructuring!
+    .then(({ token }) => tokenService.setToken(token));
   // The above could have been written as
   //.then((token) => token.token);
 }
@@ -32,19 +32,19 @@ function logout() {
 function login(creds) {
   return fetch(BASE_URL + 'login', {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),
+    headers: new Headers({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(creds)
   })
-  .then(res => {
-    // Valid login if we have a status of 2xx (res.ok)
-    if (res.ok) return res.json();
-    throw new Error('Bad Credentials!');
-  })
-  .then(({token}) => tokenService.setToken(token));
+    .then(res => {
+      // Valid login if we have a status of 2xx (res.ok)
+      if (res.ok) return res.json();
+      throw new Error('Bad Credentials!');
+    })
+    .then(({ token }) => tokenService.setToken(token));
 }
 
 export default {
-  signup, 
+  signup,
   getUser,
   logout,
   login

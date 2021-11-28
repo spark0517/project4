@@ -4,7 +4,7 @@ import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import userService from '../../utils/userService';
 import { useNavigate } from 'react-router-dom';
 
-export default function SignUpPage(props){
+export default function SignUpPage(props) {
 
   const navigate = useNavigate()
 
@@ -19,19 +19,19 @@ export default function SignUpPage(props){
 
   const [selectedFile, setSelectedFile] = useState('')
 
-  function handleChange(e){
+  function handleChange(e) {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     })
   }
-  
-  async function handleSubmit(e){
+
+  async function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData();
     formData.append('photo', selectedFile)
 
-    for (let key in state){
+    for (let key in state) {
       formData.append(key, state[key])
     }
     console.log(formData, " <- this will show nothing")
@@ -43,20 +43,20 @@ export default function SignUpPage(props){
       props.handleSignUpOrLogin()
       navigate('/')
 
-    } catch(err){
+    } catch (err) {
       setError(err.message)
     }
 
   }
 
-  function handleFileInput(e){
+  function handleFileInput(e) {
     console.log(e.target.files)
     setSelectedFile(e.target.files[0])
   }
 
 
-    return (
-      <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+  return (
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
           <Image src="https://i.imgur.com/s4LrnlU.png" /> Sign Up
@@ -117,5 +117,5 @@ export default function SignUpPage(props){
         </Form>
       </Grid.Column>
     </Grid>
-    );
+  );
 }

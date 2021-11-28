@@ -10,6 +10,6 @@ db.on("connected", function () {
   console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
 });
 
-db.on('error', function(err){
+db.on('error', function (err) {
   console.log(`Mongodb error: ${err}`)
 })
