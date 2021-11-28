@@ -98,7 +98,7 @@ export default function SignUpPage(props){
               label="bio"
               name="bio"
               value={state.bio}
-              placeholder="Tell us more about your dogs..."
+              placeholder="Tell us more about your birds..."
               onChange={handleChange}
             />
             <Form.Field>
