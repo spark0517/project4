@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import userService from '../../utils/userService';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpPage(props){
+
+  const navigate = useNavigate()
 
   const [error, setError] = useState('')
   const [state, setState] = useState({
@@ -33,8 +36,12 @@ export default function SignUpPage(props){
     }
     console.log(formData, " <- this will show nothing")
     console.log(formData.forEach((item) => console.log(item)))
+
     try {
       await userService.signup(formData)
+
+      props.handleSignUpOrLogin()
+      navigate('/')
 
     } catch(err){
       setError(err.message)
