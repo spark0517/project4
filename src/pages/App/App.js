@@ -4,6 +4,7 @@ import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
+import Feed from '../Feed/Feed'
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
 
   return (
       <Routes>
-          <Route path='/' element={<h1>Home Page</h1>} />
+          <Route path='/' element={<Feed />} />
           <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
           
           <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
