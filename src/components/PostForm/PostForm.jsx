@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react'
 
 export default function AddBirdForm(props) {
     const [selectedFile, setSelectedFile] = useState('')
@@ -59,6 +59,7 @@ export default function AddBirdForm(props) {
                         </Button>
                     </Form>
                 </Segment>
+
             </Grid.Column>
         </Grid>
 
