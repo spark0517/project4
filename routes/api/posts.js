@@ -10,6 +10,13 @@ router.get('/', postsCtrl.index)
 
 /*---------- Protected Routes ----------*/
 
+function isAuthorized(req, res, next) {
+    if (req.user) {
+        return next()
+    } else {
+        res.status(401).json({ message: 'You Are Not Authorized!' })
+    }
 
+}
 
 module.exports = router;
