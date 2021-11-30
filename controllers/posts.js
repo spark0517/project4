@@ -25,7 +25,7 @@ function create(req, res) {
           photoUrl: data.Location,
           user: req.user
         });
-  
+        await post.populate('user')
         res.status(201).json({ post: post });
       } catch (err) {
         res.status(400).json({ err });
