@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const likesSchema = mongoose.Schema({
     username: String,
     userId: { type: mongoose.Schema.Types.ObjectId }

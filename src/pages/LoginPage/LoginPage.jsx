@@ -3,15 +3,7 @@ import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
 
 export default function LoginPage(props) {
   const [error, setError] = useState("");
@@ -34,11 +26,9 @@ export default function LoginPage(props) {
 
     try {
       await userService.login(state);
-      // Route to wherever you want!
       props.handleSignUpOrLogin();
       navigate("/");
     } catch (err) {
-      // Invalid user data (probably duplicate email)
       setError(err.message);
     }
   }
@@ -51,8 +41,8 @@ export default function LoginPage(props) {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" color="teal" textAlign="center">
-            <Image src="https://i.imgur.com/s4LrnlU.png" /> Log-in to your
+          <Header as="h2" color="purple" textAlign="center">
+            <Image src="https://i.imgur.com/KRz1UQy.png" /> Log-in to your
             account
           </Header>
           <Form autoComplete="off" onSubmit={handleSubmit}>
@@ -85,7 +75,7 @@ export default function LoginPage(props) {
             </Segment>
           </Form>
           <Message>
-            New to us? <Link to="/signup">Sign Up</Link>
+            New Here? <Link to="/signup">Sign Up</Link>
           </Message>
           {error ? <ErrorMessage error={error} /> : null}
         </Grid.Column>
