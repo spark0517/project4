@@ -4,13 +4,15 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import PostFeed from "../../components/PostFeed/PostFeed";
 import PostForm from "../../components/PostForm/PostForm";
 import * as postsApi from "../../utils/postApi";
+import * as likesApi from "../../utils/likesApi";
 import { Grid } from "semantic-ui-react";
+
 
 export default function Feed(props) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  
+
   async function handleAddPost(post) {
     try {
       setLoading(true);
@@ -24,9 +26,32 @@ export default function Feed(props) {
     }
   }
 
-  async function getPosts() {
+  async function addLike(postId) {
     try {
-      setLoading(true);
+      const data = await likesApi.create(postId);
+      console.log(data, ' <- this is data the response from likes create')
+      getPosts()
+
+    } catch (err) {
+      console.log(err)
+      setError(err.message)
+    }
+  }
+
+  async function removeLike(likesId) {
+    try {
+      const data = await likesApi.removeLike(likesId);
+      console.log(data, ' <- this is data the response from likes delete')
+      getPosts(false)
+
+    } catch (err) {
+      console.log(err)
+      setError(err.message)
+    }
+  }
+  async function getPosts(showLoading) {
+    try {
+      showLoading ? setLoading(true) : setLoading(false);
       const data = await postsApi.getAll();
       setPosts([...data.posts]);
       setLoading(false);
@@ -61,6 +86,9 @@ export default function Feed(props) {
             isProfile={false}
             numPhotosCol={1}
             loading={loading}
+            user={props.user}
+            addLike={addLike}
+            removeLike={removeLike}
           />
         </Grid.Column>
       </Grid.Row>

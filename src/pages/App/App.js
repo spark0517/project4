@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -14,23 +14,50 @@ function App() {
   function handleSignUpOrLogin() {
     setUser(userService.getUser());
   }
+
+  function handleLogout() {
+    userService.logout();
+    setUser(null);
+  }
+
+  if (user) {
+    return (
+      <Routes>
+        <Route
+          path="/"
+          element={<Layout user={user} handleLogout={handleLogout} />}
+        >
+          <Route index element={<Feed user={user} />}></Route>
+          <Route
+            path="/login"
+            element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+
+          <Route
+            path="/signup"
+            element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route path="/:username" element={<ProfilePage user={user} />} />
+        </Route>
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Feed />}></Route>
-        <Route
-          path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
+      <Route
+        path="/login"
+        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+      />
 
-        <Route
-          path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route path="/:username" element={<ProfilePage />} />
-      </Route>
+      <Route
+        path="/signup"
+        element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+      />
+      <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }
+
 
 export default App;

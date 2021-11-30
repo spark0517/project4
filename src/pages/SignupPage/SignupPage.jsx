@@ -65,7 +65,7 @@ export default function SignUpPage(props) {
           <Segment stacked>
             <Form.Input
               name="username"
-              placeholder="username"
+              placeholder="Username"
               value={state.username}
               onChange={handleChange}
               required
@@ -73,7 +73,7 @@ export default function SignUpPage(props) {
             <Form.Input
               type="email"
               name="email"
-              placeholder="email"
+              placeholder="Email"
               value={state.email}
               onChange={handleChange}
               required
@@ -81,7 +81,7 @@ export default function SignUpPage(props) {
             <Form.Input
               name="password"
               type="password"
-              placeholder="password"
+              placeholder="Password"
               value={state.password}
               onChange={handleChange}
               required

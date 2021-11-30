@@ -49,6 +49,7 @@ function getProfile(username) {
   })
 }
 
+
 export default {
   signup,
   getUser,

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  process.env.DATABASE_URL, // < replace with your database name!
-)
+  process.env.DATABASE_URL, {
+})
 
 const db = mongoose.connection;
 
