@@ -19,3 +19,4 @@
 
 [Trello](https://trello.com/b/7JjgNR4c/birdfeed)
 
+[ERD via LucidApp](https://lucid.app/lucidchart/6369b650-ed53-4d57-8975-6e651c7b895d/edit?viewport_loc=299%2C-136%2C2041%2C1497%2C0_0&invitationId=inv_17147e84-d3eb-4b92-b28b-b940e80642dc)
